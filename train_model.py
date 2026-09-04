@@ -9,7 +9,7 @@ verdacht = df['content'].str.contains('Failed|Invalid|BREAK-IN', case=False, na=
 print(verdacht.sum())
 print(len(df))
 
-clf = IsolationForest(contamination="auto")
+clf = IsolationForest(contamination=0.38)
 clf.fit(X)
 
 y_pred = clf.predict(X)
