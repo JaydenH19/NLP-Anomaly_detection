@@ -14,7 +14,7 @@ Studentnummer: 97096023
 
 Ik ga een NLP (natural language processing) anomaly detection maken die kijkt naar de SSH logs of er iets verdachts in zit.
 
-Ook ga ik een web-app bouwen zodat het duidelijk te zien is wat er gebeurt.
+Ook ga ik een Streamlit apllicatie bouwen zodat het duidelijk te zien is wat er gebeurt.
 
 ### Waarom wil ik dit maken?
 
@@ -60,6 +60,7 @@ B1-K1-W2 Maakt een technisch ontwerp voor software
 B1-K1-W3 Realiseert (onderdelen van) software
 B1-K1-W4 Test software
 B1-K1-W5 Doet verbetervoorstellen voor de software
+
 </details>
 
 <details>
@@ -76,7 +77,7 @@ Student number: 97096023
 
 I am going to build an NLP (natural language processing) anomaly detection system that examines SSH logs for anything suspicious.
 
-I will also build a web app so that it's clear to see what is happening.
+I will also build a Streamlit application so that it's clear to see what is happening.
 
 ### Why do I want to make this?
 
@@ -84,7 +85,7 @@ I want to make this because my interest lies in cybersecurity and ML. This proje
 
 ## Preconditions
 
-This project uses real SSH logs, so I need to take GDPR regulations into account since I see IP addresses.
+This project uses real SSH logs, so I need to take AVG regulations into account since I see IP addresses.
 I will mask the IP addresses or partially obscure them, so that the anomaly remains visible without showing a traceable address.
 
 ### Societal impact
