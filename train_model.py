@@ -9,11 +9,14 @@ suspicious = df['content'].str.contains('Failed|Invalid|BREAK-IN', case=False, n
 print(suspicious.sum())
 print(len(df))
 
-clf = IsolationForest(contamination=0.38) 
+clf = IsolationForest(random_state=2, contamination=0.38) 
 clf.fit(X)
 
 decision_scores = clf.decision_function(X)
 print("Decision Scores:", decision_scores)
 
 y_pred = clf.predict(X)
-print((y_pred == -1).sum())
+print((y_pred == -1)) 
+
+is_anomaly = y_pred == -1
+print(df[is_anomaly])
