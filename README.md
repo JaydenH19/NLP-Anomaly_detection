@@ -1,8 +1,5 @@
 # NLP Anomaly detection
 
-<details>
-<summary>Nederlands</summary>
-
 NLP anomaly detection
 
 ## Gegevens student
@@ -61,11 +58,6 @@ B1-K1-W3 Realiseert (onderdelen van) software
 B1-K1-W4 Test software
 B1-K1-W5 Doet verbetervoorstellen voor de software
 
-</details>
-
-<details>
-<summary>English</summary>
-
 NLP anomaly detection
 
 ## Student Details
@@ -120,5 +112,3 @@ B1-K1-W2 Creates a technical design for software
 B1-K1-W3 Realizes (parts of) software
 B1-K1-W4 Tests software
 B1-K1-W5 Makes improvement proposals for the software
-
-</details>
