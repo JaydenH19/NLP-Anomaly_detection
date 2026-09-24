@@ -20,7 +20,7 @@ X_train, X_test, y_train, y_test, df_train, df_test = train_test_split(
 clf.fit(X_train) #Uses the training part to train the model
 
 decision_scores = clf.decision_function(X_test) #calculates the score for each line
-print("Decision Scores:", decision_scores)
+print("Decision Scores:\n ", decision_scores)
 
 y_pred = clf.predict(X_test) # makes -1 and 1 (-1 anomaly 1 normal)
 print((y_pred == -1)) 
@@ -38,7 +38,12 @@ predicted = is_anomaly
 
 cm = confusion_matrix(actual, predicted)
 
-print("confusion matrix: ", cm)
+print("\n confusion matrix: \n", cm)
 
-is_fp = is_anomaly & ~y_test 
+print("\n False positive")
+is_fp = is_anomaly & ~y_test #False Positive
 print(df_test[is_fp])
+
+print("False Negative")
+is_fn = y_test & ~is_anomaly #False Negative 
+print(df_test[is_fn])
