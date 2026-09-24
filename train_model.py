@@ -8,7 +8,7 @@ from sklearn.metrics import precision_score, recall_score, f1_score, confusion_m
 X = joblib.load('Data/IF_X.pkl') # data in number
 
 df = pd.read_csv('Data/cleaned.csv') # load readable tekst 
-suspicious = df['content'].str.contains('Failed|Invalid|BREAK-IN|authentication|PAM|Connection', case=False, na=False) # True False array
+suspicious = df['content'].str.contains('Failed|Invalid|BREAK-IN', case=False, na=False) # True False array
 print(suspicious.sum()) #print the True lines
 print(len(df))
 
