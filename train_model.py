@@ -47,3 +47,8 @@ print(df_test[is_fp])
 print("False Negative")
 is_fn = y_test & ~is_anomaly #False Negative 
 print(df_test[is_fn])
+print("Aantal 'Failed password for root':", df['content'].str.contains('Failed password for root', case=False, na=False).sum())
+
+
+print(df_test[is_fp].head(5))
+print(df_test[is_fn].head(5))
