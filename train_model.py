@@ -41,14 +41,15 @@ cm = confusion_matrix(actual, predicted)
 print("\n confusion matrix: \n", cm)
 
 print("\n False positive")
-is_fp = is_anomaly & ~y_test #False Positive
-print(df_test[is_fp])
+is_fp = is_anomaly & ~y_test # combine 2 conditions with &. 
+print(df_test[is_fp]) # shows readeble Fasle positives
 
 print("False Negative")
-is_fn = y_test & ~is_anomaly #False Negative 
-print(df_test[is_fn])
+is_fn = y_test & ~is_anomaly #Same principle as above 
+print(df_test[is_fn]) # False Negative
+
 print("Aantal 'Failed password for root':", df['content'].str.contains('Failed password for root', case=False, na=False).sum())
+#counts how often 'Failed password for root' is in the data set
 
-
-print(df_test[is_fp].head(5))
+print(df_test[is_fp].head(5)) #shows only the 5 first rows
 print(df_test[is_fn].head(5))
