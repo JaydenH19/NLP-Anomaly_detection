@@ -3,6 +3,8 @@ from sklearn.ensemble import IsolationForest
 import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 X = joblib.load('Data/IF_X.pkl') # data in number
@@ -37,6 +39,26 @@ actual = y_test
 predicted = is_anomaly
 
 cm = confusion_matrix(actual, predicted)
+
+plt.figure()
+sns.heatmap(cm,
+            annot=True,
+            fmt='g',
+            xticklabels=['not anomaly','Anomaly'],
+            yticklabels=['not anomaly','Anomaly'])
+
+
+plt.figure()
+anomaly = ['True N', 'False P', 'False N', 'True P']
+amount = [61360, 73455, 72846, 8538]
+bar_labels = ['Right', 'Wrong']
+bar_colors = ['tab:green', 'tab:red', 'tab:red', 'tab:green']
+
+plt.bar(anomaly, amount, color=bar_colors, width=0.3)
+plt.title('Anomaly')
+plt.xlabel('Meaning')
+plt.ylabel('amount')
+plt.show()
 
 print("\n confusion matrix: \n", cm)
 
