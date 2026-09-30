@@ -1,3 +1,4 @@
+import streamlit as st
 import pandas as pd
 from sklearn.ensemble import IsolationForest
 import joblib
@@ -6,6 +7,7 @@ from sklearn.metrics import precision_score, recall_score, f1_score, confusion_m
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+st.title("Anomaly dashboard")
 
 X = joblib.load('Data/IF_X.pkl') # data in number
 
@@ -41,13 +43,6 @@ predicted = is_anomaly
 cm = confusion_matrix(actual, predicted)
 
 plt.figure()
-sns.heatmap(cm,
-            annot=True, #If True, displays numerical values inside the cells.
-            fmt='g', #String format for annotations.
-            xticklabels=['not anomaly','Anomaly'], # replaces default labels
-            yticklabels=['not anomaly','Anomaly'])
-
-plt.figure()
 anomaly = ['True N', 'False P', 'False N', 'True P']
 amount = [61360, 73455, 72846, 8538]
 bar_labels = ['Right', 'Wrong']
@@ -74,3 +69,47 @@ print("Aantal 'Failed password for root':", df['content'].str.contains('Failed p
 
 print(df_test[is_fp].head(5)) #shows only the 5 first rows
 print(df_test[is_fn].head(5))
+
+@st.cache_resource
+def train_model():
+    import sklearn
+    model = sklearn.svm.SVC()
+    return model
+
+my_model = train_model()
+st.write("Precision:", precision_score(y_test, is_anomaly))
+st.write("Recall:", recall_score(y_test, is_anomaly))
+st.write("F1 score:", f1_score(y_test, is_anomaly))
+
+col1, col2 = st.columns(2)
+
+df_test['content'] = df_test['content'].str.replace(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', '<IP>', regex=True)
+
+with col1:
+    fig, ax = plt.subplots()
+    sns.heatmap(cm,
+                annot=True,
+                fmt='g',
+                xticklabels=['not anomaly','Anomaly'],
+                yticklabels=['not anomaly','Anomaly'],
+                ax=ax)
+    st.pyplot(fig)
+
+with col2:
+    fig, ax = plt.subplots()
+    ax.bar(anomaly, amount, color=bar_colors, width=0.3)
+    ax.set_title('Anomaly')
+    ax.set_xlabel('Meaning')
+    ax.set_ylabel('amount')
+    st.pyplot(fig)
+
+st.subheader("Alle gemarkeerde anomalieën")
+resultaten = df_test[is_anomaly].copy()
+resultaten['score'] = decision_scores[is_anomaly]
+resultaten = resultaten.sort_values('score')
+st.dataframe(resultaten)
+
+if st.button('Refresh Cache'):
+    st.cache_data.clear()
+
+#streamlit run dashboard.py

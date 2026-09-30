@@ -2,7 +2,7 @@
 
 ## is het gelukt om het product te maken zoals je bedoelde? En Is het gelukt om het gewenste product te maken in de gestelde tijd?
 
-Ja het is mij gelukt. Ik heb gemaakt wat ik wilde en heb KAN 8,9 en 10 afgerond binnen de tijd.
+Ja het is mij gelukt. Ik heb gemaakt wat ik wilde en heb KAN 8,9 en 10 afgerond binnen de tijd. Ook heb ik al meer kunnen doen door het Streamlit dashboard te maken. Ik heb dit toegevoegd aan het Kanban board voor KAN 11.
 
 ## Is het gelukt om de leerdoelen voor dit project waar te maken?
 
