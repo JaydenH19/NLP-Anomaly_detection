@@ -21,6 +21,9 @@ clf = IsolationForest(random_state=2, contamination=0.38) #makes untraind model
 X_train, X_test, y_train, y_test, df_train, df_test = train_test_split(
     X, suspicious, df, test_size=0.33, random_state=42) #makes training part and test part 
 
+print(len(y_train))
+print(len(y_test))
+
 clf.fit(X_train) #Uses the training part to train the model
 
 decision_scores = clf.decision_function(X_test) #calculates the score for each line
@@ -84,6 +87,7 @@ st.write("F1 score:", f1_score(y_test, is_anomaly))
 col1, col2 = st.columns(2)
 
 df_test['content'] = df_test['content'].str.replace(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', '<IP>', regex=True)
+#mask the ip address to complie with the AVG laws
 
 with col1:
     fig, ax = plt.subplots()
