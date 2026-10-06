@@ -86,8 +86,9 @@ st.write("F1 score:", f1_score(y_test, is_anomaly))
 
 col1, col2 = st.columns(2)
 
-df_test['content'] = df_test['content'].str.replace(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', '<IP>', regex=True)
-#mask the ip address to complie with the AVG laws
+print("Aantal regels met IP vóór maskering:", df_test['content'].str.contains(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', regex=True).sum())
+df_test['content'] = df_test['content'].str.replace(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', '<IP>', regex=True) # mask the IP addresses to comply with the AVG
+print("Aantal regels met IP na maskering:", df_test['content'].str.contains(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', regex=True).sum())
 
 with col1:
     fig, ax = plt.subplots()
