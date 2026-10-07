@@ -1,6 +1,6 @@
 # Testplan NLP anomaly detection
 
-## Testscenario 1: train/test split (unit test)
+## Testscenario 1: train/test split (handmatige test)
 
 ### Wat ga ik precies testen?
 
