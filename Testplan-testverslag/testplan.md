@@ -22,15 +22,15 @@ Train: 438.948 regels, Test: 216.199 regels. Samen 655.147, gelijk aan het totaa
 
 ## Testscenario 2: IP-maskering (unit test)
 
-### Wat ga ik precies testen?
+### Wat ga ik precies testen ?
 
 Ik ga testen of de ip adressen goed worden verborgen zodat mijn project voldoet aan de avg regelgeving.
 
-### Hoe ga ik dit testen?
+### Hoe ga ik dit testen ?
 
 Ik ga dit testen door het programma 2 keer te draaien 1 keer met: str.replace(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', '<IP>', regex=True) en 1 keer zonder zodat ik kan zien wat de verschillen zijn. Ik tel met str.contains(...).sum() hoeveel regels nog een IP-adres bevatten, één keer vóór en één keer na de maskering.
 
-### Wat verwacht ik als resultaat?
+### Wat verwacht ik als resultaat ?
 
 Ik verwacht dat het aantal IP-adressen in df_test['content'] vóór de maskering groter is dan 0, omdat de SSH-logs echte IP-adressen bevatten. Na de maskering met str.replace() verwacht ik dat dit aantal precies 0 is.
 
