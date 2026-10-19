@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
+from masking import maskeer
 
 st.title("Anomaly dashboard")
 
@@ -14,6 +15,8 @@ X = joblib.load('Data/IF_X.pkl') # data in number
 df = pd.read_csv('Data/cleaned.csv') # load readable tekst 
 suspicious = df['content'].str.contains('Failed|Invalid|BREAK-IN', case=False, na=False) # True False array
 print(suspicious.sum()) #print the True lines
+
+print("\nthe total size of the data set (100%):")
 print(len(df))
 
 clf = IsolationForest(random_state=2, contamination=0.38) #makes untraind model 
@@ -21,7 +24,9 @@ clf = IsolationForest(random_state=2, contamination=0.38) #makes untraind model
 X_train, X_test, y_train, y_test, df_train, df_test = train_test_split(
     X, suspicious, df, test_size=0.33, random_state=42) #makes training part and test part 
 
+print("The training set(67%):")
 print(len(y_train))
+print("The test set (33%):")
 print(len(y_test))
 
 clf.fit(X_train) #Uses the training part to train the model
@@ -87,7 +92,7 @@ st.write("F1 score:", f1_score(y_test, is_anomaly))
 col1, col2 = st.columns(2)
 
 print("Aantal regels met IP vóór maskering:", df_test['content'].str.contains(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', regex=True).sum())
-df_test['content'] = df_test['content'].str.replace(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', '<IP>', regex=True) # mask the IP addresses to comply with the AVG
+df_test['content'] = maskeer(df_test['content']) # mask the IP addresses to comply with the AVG
 print("Aantal regels met IP na maskering:", df_test['content'].str.contains(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', regex=True).sum())
 
 with col1:

@@ -1,9 +1,5 @@
 import pandas as pd
-
-IP_PATROON = r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
-
-def maskeer(regels):
-    return regels.str.replace(IP_PATROON, '<IP>', regex=True)
+from masking import maskeer, IP_PATROON
 
 def test_ip_wordt_vervangen():
     regels = pd.Series(["Invalid user admin from 173.234.31.186"])
@@ -18,3 +14,5 @@ def test_geen_ip_meer_over():
 def test_regel_zonder_ip_blijft_gelijk():
     regels = pd.Series(["Connection closed [preauth]"])
     assert maskeer(regels).iloc[0] == "Connection closed [preauth]"
+
+# pytest test_masking.py
