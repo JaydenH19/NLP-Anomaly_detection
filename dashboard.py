@@ -78,13 +78,6 @@ print("Aantal 'Failed password for root':", df['content'].str.contains('Failed p
 print(df_test[is_fp].head(5)) #shows only the 5 first rows
 print(df_test[is_fn].head(5))
 
-@st.cache_resource
-def train_model():
-    import sklearn
-    model = sklearn.svm.SVC()
-    return model
-
-my_model = train_model()
 st.write("Precision:", precision_score(y_test, is_anomaly))
 st.write("Recall:", recall_score(y_test, is_anomaly))
 st.write("F1 score:", f1_score(y_test, is_anomaly))
@@ -118,8 +111,5 @@ resultaten = df_test[is_anomaly].copy()
 resultaten['score'] = decision_scores[is_anomaly]
 resultaten = resultaten.sort_values('score')
 st.dataframe(resultaten)
-
-if st.button('Refresh Cache'):
-    st.cache_data.clear()
 
 #streamlit run dashboard.py
