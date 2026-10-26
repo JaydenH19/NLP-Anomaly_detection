@@ -28,7 +28,7 @@ Ik ga testen of de ip adressen goed worden verborgen zodat mijn project voldoet 
 
 ### Hoe ga ik dit testen ?
 
-Ik ga dit testen door het programma 2 keer te draaien 1 keer met: str.replace(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', '<IP>', regex=True) en 1 keer zonder zodat ik kan zien wat de verschillen zijn. Ik tel met str.contains(...).sum() hoeveel regels nog een IP-adres bevatten, één keer vóór en één keer na de maskering.
+Ik ga dit testen door het programma 2 keer te draaien 1 keer met: str.replace(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', IP, regex=True) en 1 keer zonder zodat ik kan zien wat de verschillen zijn. Ik tel met str.contains(...).sum() hoeveel regels nog een IP-adres bevatten, één keer vóór en één keer na de maskering.
 
 ### Wat verwacht ik als resultaat ?
 
