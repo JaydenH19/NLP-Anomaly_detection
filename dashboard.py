@@ -50,17 +50,10 @@ predicted = is_anomaly
 
 cm = confusion_matrix(actual, predicted)
 
-plt.figure()
+
 anomaly = ['True N', 'False P', 'False N', 'True P']
 amount = [61360, 73455, 72846, 8538]
-bar_labels = ['Right', 'Wrong']
 bar_colors = ['tab:green', 'tab:red', 'tab:red', 'tab:green']
-
-plt.bar(anomaly, amount, color=bar_colors, width=0.3)
-plt.title('Anomaly')
-plt.xlabel('Meaning')
-plt.ylabel('amount')
-plt.show()
 
 print("\n confusion matrix: \n", cm)
 
