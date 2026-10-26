@@ -50,17 +50,10 @@ predicted = is_anomaly
 
 cm = confusion_matrix(actual, predicted)
 
-plt.figure()
+
 anomaly = ['True N', 'False P', 'False N', 'True P']
 amount = [61360, 73455, 72846, 8538]
-bar_labels = ['Right', 'Wrong']
 bar_colors = ['tab:green', 'tab:red', 'tab:red', 'tab:green']
-
-plt.bar(anomaly, amount, color=bar_colors, width=0.3)
-plt.title('Anomaly')
-plt.xlabel('Meaning')
-plt.ylabel('amount')
-plt.show()
 
 print("\n confusion matrix: \n", cm)
 
@@ -78,13 +71,6 @@ print("Aantal 'Failed password for root':", df['content'].str.contains('Failed p
 print(df_test[is_fp].head(5)) #shows only the 5 first rows
 print(df_test[is_fn].head(5))
 
-@st.cache_resource
-def train_model():
-    import sklearn
-    model = sklearn.svm.SVC()
-    return model
-
-my_model = train_model()
 st.write("Precision:", precision_score(y_test, is_anomaly))
 st.write("Recall:", recall_score(y_test, is_anomaly))
 st.write("F1 score:", f1_score(y_test, is_anomaly))
@@ -118,8 +104,5 @@ resultaten = df_test[is_anomaly].copy()
 resultaten['score'] = decision_scores[is_anomaly]
 resultaten = resultaten.sort_values('score')
 st.dataframe(resultaten)
-
-if st.button('Refresh Cache'):
-    st.cache_data.clear()
 
 #streamlit run dashboard.py
